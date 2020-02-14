@@ -457,9 +457,9 @@ class Grouping:
             return False
         
         #No student appears in more than one group in _groups
-        for stu in group._members:
+        for stu in group.get_members():
             for g in self._groups:
-                if stu in g._members:
+                if stu.id in [s.id for s in g.get_members()]:
                     return False
                 
         self._groups.append(group)

@@ -192,7 +192,7 @@ class NumericQuestion(Question):
         minimum and maximum (inclusive) possible answers to this question.
         """
         # TODO: complete the body of this method
-        if isinstance(answer.content, int):
+        if isinstance(answer.content, int) and not isinstance(answer.content, bool):
             if self._min <= answer.content <= self._max:
                 return True
         return False
