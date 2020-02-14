@@ -930,4 +930,4 @@ class TestStep10:
 if __name__ == '__main__':
     print(logo)
     print(disclaimer)
-    pytest.main(['a1_shittests_v4.py'])
+    pytest.main(['a1_test_v4 .py'])
