@@ -10,7 +10,7 @@ Copying for purposes other than this use is expressly prohibited.
 All forms of distribution of this code, whether as given or with
 any changes, are expressly prohibited.
 
-Authors: Misha Schwartz, Mario Badr, Christine Murad, Diane Horton, 
+Authors: Misha Schwartz, Mario Badr, Christine Murad, Diane Horton,
 Sophia Huynh and Jaisie Sin
 
 All of the files in this directory and all subdirectories are:
@@ -82,20 +82,20 @@ class HomogeneousCriterion(Criterion):
         len(answers) > 0
         """
         # TODO: complete the body of this method
-        
+
         #check answers are valid
         for ans in answers:
             if not ans.is_valid(question):
                 raise InvalidAnswerError
-                
-        if len(answers)==1:
+
+        if len(answers) == 1:
             return 1
-        
-        scores=[]
-        
+
+        scores = []
+
 #        answers=[1,2,3,4,5,6]
         for i in range(len(answers)-1):
-            for j in range(i+1,len(answers)):
+            for j in range(i+1, len(answers)):
 #                print(i, j)
                 similarity = question.get_similarity(answers[i], answers[j])
                 scores.append(similarity)
@@ -159,24 +159,24 @@ class LonelyMemberCriterion(Criterion):
         len(answers) > 0
         """
         # TODO: complete the body of this method
-        
+
         #check answers are valid
         for ans in answers:
             if ans.is_valid(question) is not True:
                 raise InvalidAnswerError
 
-        answer_content = [ans.content for ans in answers]
+        answer_content = [answ.content for answ in answers]
         for ans in answer_content:
 
             ans_count = answer_content.count(ans)
             if ans_count == 1:
                 return 0
-        
+
         return 1
 
-         
-    
-    
+
+
+
 if __name__ == '__main__':
     import python_ta
     python_ta.check_all(config={'extra-imports': ['typing',

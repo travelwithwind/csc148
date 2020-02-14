@@ -80,7 +80,7 @@ class Student:
         """
         # TODO: complete the body of this method
         if self._ans.get(question):
-            answer=self._ans.get(question)
+            answer = self._ans.get(question)
             return question.validate_answer(answer)
         return False
 
@@ -89,7 +89,7 @@ class Student:
         Record this student's answer <answer> to the question <question>.
         """
         # TODO: complete the body of this method
-        self._ans[question]=answer
+        self._ans[question] = answer
 
     def get_answer(self, question: Question) -> Optional[Answer]:
         """
@@ -131,20 +131,22 @@ class Course:
         do not add any of the students in <students> to the course.
         """
         # TODO: complete the body of this method
-        
+
         existed_id = [student.id for student in self.students]
         new_id = [student.id for student in students]
         new_name = [student.name for student in students]
-        
+
         #No two students in this course have the same id
         if len(existed_id) + len(new_id) != len(set(existed_id+ new_id)):
             return None
-        
+
         #name is not the empty string
         if '' in new_name:
             return None
-        
+
+
         self.students = self.students + students
+        return None
 
     def all_answered(self, survey: Survey) -> bool:
         """
@@ -157,8 +159,8 @@ class Course:
                 if not student.has_answer(question):
                     return False
         return True
-    
-        
+
+
     def get_students(self) -> Tuple[Student, ...]:
         """
         Return a tuple of all students enrolled in this course.
@@ -171,13 +173,13 @@ class Course:
         # TODO: complete the body of this method
         existed_id = [student.id for student in self.students]
         existed_id.sort()
-        sorted_stu=[]
+        sorted_stu = []
         for stu_id in existed_id:
-            for student in self.students:
-                if student.id == stu_id:
-                    sorted_stu.append(student)
+            for stu in self.students:
+                if stu.id == stu_id:
+                    sorted_stu.append(stu)
         return tuple(sorted_stu)
-    
+
 if __name__ == '__main__':
     import python_ta
     python_ta.check_all(config={'extra-imports': ['typing', 'survey']})
