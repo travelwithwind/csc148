@@ -192,7 +192,8 @@ class NumericQuestion(Question):
         minimum and maximum (inclusive) possible answers to this question.
         """
         # TODO: complete the body of this method
-        if isinstance(answer.content, int) and not isinstance(answer.content, bool):
+        if isinstance(answer.content, int) and not\
+                isinstance(answer.content, bool):
             if self._min <= answer.content <= self._max:
                 return True
         return False
@@ -228,6 +229,7 @@ class NumericQuestion(Question):
             step3 = 1 - step2
             return step3
 
+        return None
 
 class YesNoQuestion(Question):
     # TODO: make this a child class of another class defined in this file
@@ -265,7 +267,7 @@ class YesNoQuestion(Question):
         Return True iff <answer>'s content is a boolean.
         """
         # TODO: complete the body of this method
-        if type(answer.content) == bool:
+        if isinstance(answer.content, bool):
             return True
         return False
 
@@ -282,6 +284,8 @@ class YesNoQuestion(Question):
                 return 1
             else:
                 return 0
+
+        return None
 
 
 class CheckboxQuestion(MultipleChoiceQuestion):
@@ -329,7 +333,8 @@ class CheckboxQuestion(MultipleChoiceQuestion):
         # TODO: complete the body of this method
         if answer.content:
             if isinstance(answer.content, list):
-                if set(answer.content).issubset(set(self._options)) and len(set(answer.content)) == len(answer.content):
+                if set(answer.content).issubset(set(self._options)) and\
+                        len(set(answer.content)) == len(answer.content):
                     return True
             else:
                 if answer in self._options:
@@ -586,7 +591,7 @@ class Survey:
             in this survey
         """
         # TODO: complete the body of this method
-        if grouping._groups == []:
+        if grouping.get_groups() == []:
             return 0
 
         scores = []
