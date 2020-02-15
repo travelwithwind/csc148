@@ -533,7 +533,7 @@ footer {
     <body>
         <header>
             <h1 class="title">PyTA Error Report</h1>
-            <time>Fri. Feb. 14 2020, 07:24:02 PM</time>
+            <time>Fri. Feb. 14 2020, 07:48:50 PM</time>
         </header>
         <main>
             
@@ -564,6 +564,46 @@ footer {
                         </span>
                     </h3>
                     <div class="content collapsible">
+                        
+                        <div class="error-instance">
+
+                            <div class="info">
+                                <span class="error-link style-error-id">
+                                    <a href="http://www.cs.toronto.edu/~david/pyta/&#35;C0301" target="_blank">&#10064; C0301 (line-too-long)</a>
+                                </span>
+                                <span class="occurrences">
+                                1
+                                
+                                 occurrence.
+                                
+                                </span>
+                                <span class="shown">
+                                
+                                </span>
+                                <span class="slider">
+                                   <button> Expand/Collapse </button>
+                                </span>
+                            </div>
+
+                            <div class="message-container collapsible">
+                                
+                                <div class="message">
+                                    <h4 class="message-name">
+                                        [Line 369] Line too long (98/80)
+                                    </h4>
+                                    
+                                    <code>  <span class="grey line-num">367</span>              <span class="grey"><span class="pygments-n">ids</span><span class="pygments-o">.</span><span class="pygments-n">append</span><span class="pygments-p">(</span><span class="pygments-n">stu</span><span class="pygments-o">.</span><span class="pygments-n">id</span><span class="pygments-p">)</span></span>
+  <span class="grey line-num">368</span>          <span class="grey"><span class="pygments-k">if</span> <span class="pygments-nb">len</span><span class="pygments-p">(</span><span class="pygments-nb">set</span><span class="pygments-p">(</span><span class="pygments-n">ids</span><span class="pygments-p">))</span> <span class="pygments-o">!=</span> <span class="pygments-nb">len</span><span class="pygments-p">(</span><span class="pygments-n">ids</span><span class="pygments-p">):</span></span>
+  <span class="gbold line-num">369</span>              <span class="highlight-pyta"><span class="pygments-c1"># violation of Representation Invariants:No two students in _members have the same id&#39;</span></span>
+  <span class="grey line-num">370</span>              <span class="grey"><span class="pygments-k">return</span></span>
+  <span class="grey line-num">371</span>  <span class="grey"></span>
+</code>
+                                    
+                                </div>
+                                
+                            </div>
+
+                        </div>
                         
                         <div class="error-instance">
 
@@ -600,62 +640,21 @@ footer {
   <span class="gbold line-num">324</span>  <span class="highlight-pyta"></span>
   <span class="gbold line-num">325</span>                  <span class="highlight-pyta"><span class="pygments-n">curr_score1</span> <span class="pygments-o">=</span> <span class="pygments-n">survey</span><span class="pygments-o">.</span><span class="pygments-n">score_students</span><span class="pygments-p">(</span><span class="pygments-n">wds</span><span class="pygments-p">[</span><span class="pygments-n">i</span><span class="pygments-p">])</span></span>
   <span class="gbold line-num">326</span>  <span class="highlight-pyta"></span>
-  <span class="gbold line-num">327</span>                  <span class="highlight-pyta"><span class="pygments-k">if</span> <span class="pygments-n">i</span> <span class="pygments-o">==</span> <span class="pygments-nb">len</span><span class="pygments-p">(</span><span class="pygments-n">wds</span><span class="pygments-p">)</span><span class="pygments-o">-</span><span class="pygments-mi">1</span><span class="pygments-p">:</span></span>
+  <span class="gbold line-num">327</span>                  <span class="highlight-pyta"><span class="pygments-k">if</span> <span class="pygments-n">i</span> <span class="pygments-o">==</span> <span class="pygments-nb">len</span><span class="pygments-p">(</span><span class="pygments-n">wds</span><span class="pygments-p">)</span> <span class="pygments-o">-</span> <span class="pygments-mi">1</span><span class="pygments-p">:</span></span>
   <span class="gbold line-num">328</span>                      <span class="highlight-pyta"><span class="pygments-n">idx_next</span> <span class="pygments-o">=</span> <span class="pygments-mi">0</span></span>
   <span class="gbold line-num">329</span>                  <span class="highlight-pyta"><span class="pygments-k">else</span><span class="pygments-p">:</span></span>
-  <span class="gbold line-num">330</span>                      <span class="highlight-pyta"><span class="pygments-n">idx_next</span> <span class="pygments-o">=</span> <span class="pygments-n">i</span><span class="pygments-o">+</span><span class="pygments-mi">1</span></span>
+  <span class="gbold line-num">330</span>                      <span class="highlight-pyta"><span class="pygments-n">idx_next</span> <span class="pygments-o">=</span> <span class="pygments-n">i</span> <span class="pygments-o">+</span> <span class="pygments-mi">1</span></span>
   <span class="gbold line-num">331</span>                  <span class="highlight-pyta"><span class="pygments-n">curr_score2</span> <span class="pygments-o">=</span> <span class="pygments-n">survey</span><span class="pygments-o">.</span><span class="pygments-n">score_students</span><span class="pygments-p">(</span><span class="pygments-n">wds</span><span class="pygments-p">[</span><span class="pygments-n">idx_next</span><span class="pygments-p">])</span></span>
   <span class="gbold line-num">332</span>  <span class="highlight-pyta"></span>
   <span class="gbold line-num">333</span>                  <span class="highlight-pyta"><span class="pygments-k">if</span> <span class="pygments-n">curr_score1</span> <span class="pygments-o">&gt;=</span> <span class="pygments-n">curr_score2</span><span class="pygments-p">:</span></span>
   <span class="gbold line-num">334</span>                      <span class="highlight-pyta"><span class="pygments-n">g</span><span class="pygments-o">.</span><span class="pygments-n">add_group</span><span class="pygments-p">(</span><span class="pygments-n">Group</span><span class="pygments-p">(</span><span class="pygments-n">wds</span><span class="pygments-p">[</span><span class="pygments-n">i</span><span class="pygments-p">]))</span></span>
   <span class="gbold line-num">335</span>  <span class="highlight-pyta"></span>
-  <span class="gbold line-num">336</span>                      <span class="highlight-pyta"><span class="pygments-c1">#remove students that are assigned group from the stu list</span></span>
+  <span class="gbold line-num">336</span>                      <span class="highlight-pyta"><span class="pygments-c1"># remove students that are assigned group from the stu list</span></span>
   <span class="gbold line-num">337</span>                      <span class="highlight-pyta"><span class="pygments-k">for</span> <span class="pygments-n">s</span> <span class="pygments-ow">in</span> <span class="pygments-n">wds</span><span class="pygments-p">[</span><span class="pygments-n">i</span><span class="pygments-p">]:</span></span>
   <span class="gbold line-num">338</span>                          <span class="highlight-pyta"><span class="pygments-n">stu</span><span class="pygments-o">.</span><span class="pygments-n">remove</span><span class="pygments-p">(</span><span class="pygments-n">s</span><span class="pygments-p">)</span></span>
   <span class="gbold line-num">339</span>                      <span class="highlight-pyta"><span class="pygments-k">break</span></span>
   <span class="grey line-num">340</span>  <span class="grey"></span>
   <span class="grey line-num">341</span>          <span class="grey"><span class="pygments-k">if</span> <span class="pygments-mi">0</span> <span class="pygments-o">&lt;</span> <span class="pygments-nb">len</span><span class="pygments-p">(</span><span class="pygments-n">stu</span><span class="pygments-p">)</span> <span class="pygments-o">&lt;=</span> <span class="pygments-bp">self</span><span class="pygments-o">.</span><span class="pygments-n">group_size</span><span class="pygments-p">:</span></span>
-</code>
-                                    
-                                </div>
-                                
-                            </div>
-
-                        </div>
-                        
-                        <div class="error-instance">
-
-                            <div class="info">
-                                <span class="error-link style-error-id">
-                                    <a href="http://www.cs.toronto.edu/~david/pyta/&#35;E9998" target="_blank">&#10064; E9998 (IO-function-not-allowed)</a>
-                                </span>
-                                <span class="occurrences">
-                                1
-                                
-                                 occurrence.
-                                
-                                </span>
-                                <span class="shown">
-                                
-                                </span>
-                                <span class="slider">
-                                   <button> Expand/Collapse </button>
-                                </span>
-                            </div>
-
-                            <div class="message-container collapsible">
-                                
-                                <div class="message">
-                                    <h4 class="message-name">
-                                        [Line 368] Used IO function print
-                                    </h4>
-                                    
-                                    <code>  <span class="grey line-num">366</span>              <span class="grey"><span class="pygments-n">ids</span><span class="pygments-o">.</span><span class="pygments-n">append</span><span class="pygments-p">(</span><span class="pygments-n">stu</span><span class="pygments-o">.</span><span class="pygments-n">id</span><span class="pygments-p">)</span></span>
-  <span class="grey line-num">367</span>          <span class="grey"><span class="pygments-k">if</span> <span class="pygments-nb">len</span><span class="pygments-p">(</span><span class="pygments-nb">set</span><span class="pygments-p">(</span><span class="pygments-n">ids</span><span class="pygments-p">))</span> <span class="pygments-o">!=</span> <span class="pygments-nb">len</span><span class="pygments-p">(</span><span class="pygments-n">ids</span><span class="pygments-p">):</span></span>
-  <span class="gbold line-num">368</span>              <span class="black"></span><span class="highlight-pyta"><span class="pygments-nb">print</span><span class="pygments-p">(</span><span class="pygments-s1">&#39;violation of Representation Invariants</span><span class="pygments-se">\</span></span>
-  <span class="gbold line-num">369</span>                    <span class="highlight-pyta"><span class="pygments-p">:</span><span class="pygments-n">No</span> <span class="pygments-n">two</span> <span class="pygments-n">students</span> <span class="pygments-ow">in</span> <span class="pygments-n">_members</span> <span class="pygments-n">have</span> <span class="pygments-n">the</span> <span class="pygments-n">same</span> <span class="pygments-nb">id</span><span class="pygments-s1">&#39;)</span></span>
-  <span class="grey line-num">370</span>              <span class="grey"><span class="pygments-k">return</span></span>
-  <span class="grey line-num">371</span>  <span class="grey"></span>
 </code>
                                     
                                 </div>
@@ -688,28 +687,28 @@ footer {
                                 
                                 <div class="message">
                                     <h4 class="message-name">
-                                        [Line 32] Unused Survey imported from survey
+                                        [Line 33] Unused Survey imported from survey
                                     </h4>
                                     
-                                    <code>   <span class="grey line-num">30</span>  <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">course</span> <span class="pygments-kn">import</span> <span class="pygments-n">sort_students</span></span>
-   <span class="grey line-num">31</span>  <span class="grey"><span class="pygments-k">if</span> <span class="pygments-n">TYPE_CHECKING</span><span class="pygments-p">:</span></span>
-   <span class="gbold line-num">32</span>      <span class="black"></span><span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">survey</span> <span class="pygments-kn">import</span> <span class="pygments-n">Survey</span></span>
-   <span class="grey line-num">33</span>      <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">course</span> <span class="pygments-kn">import</span> <span class="pygments-n">Course</span><span class="pygments-p">,</span> <span class="pygments-n">Student</span></span>
-   <span class="grey line-num">34</span>  <span class="grey"></span>
+                                    <code>   <span class="grey line-num">31</span>  <span class="grey"></span>
+   <span class="grey line-num">32</span>  <span class="grey"><span class="pygments-k">if</span> <span class="pygments-n">TYPE_CHECKING</span><span class="pygments-p">:</span></span>
+   <span class="gbold line-num">33</span>      <span class="black"></span><span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">survey</span> <span class="pygments-kn">import</span> <span class="pygments-n">Survey</span></span>
+   <span class="grey line-num">34</span>      <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">course</span> <span class="pygments-kn">import</span> <span class="pygments-n">Course</span><span class="pygments-p">,</span> <span class="pygments-n">Student</span></span>
+   <span class="grey line-num">35</span>  <span class="grey"></span>
 </code>
                                     
                                 </div>
                                 
                                 <div class="message">
                                     <h4 class="message-name">
-                                        [Line 33] Unused Course imported from course
+                                        [Line 34] Unused Course imported from course
                                     </h4>
                                     
-                                    <code>   <span class="grey line-num">31</span>  <span class="grey"><span class="pygments-k">if</span> <span class="pygments-n">TYPE_CHECKING</span><span class="pygments-p">:</span></span>
-   <span class="grey line-num">32</span>      <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">survey</span> <span class="pygments-kn">import</span> <span class="pygments-n">Survey</span></span>
-   <span class="gbold line-num">33</span>      <span class="black"></span><span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">course</span> <span class="pygments-kn">import</span> <span class="pygments-n">Course</span><span class="pygments-p">,</span> <span class="pygments-n">Student</span></span>
-   <span class="grey line-num">34</span>  <span class="grey"></span>
+                                    <code>   <span class="grey line-num">32</span>  <span class="grey"><span class="pygments-k">if</span> <span class="pygments-n">TYPE_CHECKING</span><span class="pygments-p">:</span></span>
+   <span class="grey line-num">33</span>      <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">survey</span> <span class="pygments-kn">import</span> <span class="pygments-n">Survey</span></span>
+   <span class="gbold line-num">34</span>      <span class="black"></span><span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">course</span> <span class="pygments-kn">import</span> <span class="pygments-n">Course</span><span class="pygments-p">,</span> <span class="pygments-n">Student</span></span>
    <span class="grey line-num">35</span>  <span class="grey"></span>
+   <span class="grey line-num">36</span>  <span class="grey"></span>
 </code>
                                     
                                 </div>
@@ -742,14 +741,14 @@ footer {
                                 
                                 <div class="message">
                                     <h4 class="message-name">
-                                        [Line 33] Imports from package course are not grouped
+                                        [Line 34] Imports from package course are not grouped
                                     </h4>
                                     
-                                    <code>   <span class="grey line-num">31</span>  <span class="grey"><span class="pygments-k">if</span> <span class="pygments-n">TYPE_CHECKING</span><span class="pygments-p">:</span></span>
-   <span class="grey line-num">32</span>      <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">survey</span> <span class="pygments-kn">import</span> <span class="pygments-n">Survey</span></span>
-   <span class="gbold line-num">33</span>      <span class="black"></span><span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">course</span> <span class="pygments-kn">import</span> <span class="pygments-n">Course</span><span class="pygments-p">,</span> <span class="pygments-n">Student</span></span>
-   <span class="grey line-num">34</span>  <span class="grey"></span>
+                                    <code>   <span class="grey line-num">32</span>  <span class="grey"><span class="pygments-k">if</span> <span class="pygments-n">TYPE_CHECKING</span><span class="pygments-p">:</span></span>
+   <span class="grey line-num">33</span>      <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">survey</span> <span class="pygments-kn">import</span> <span class="pygments-n">Survey</span></span>
+   <span class="gbold line-num">34</span>      <span class="black"></span><span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">course</span> <span class="pygments-kn">import</span> <span class="pygments-n">Course</span><span class="pygments-p">,</span> <span class="pygments-n">Student</span></span>
    <span class="grey line-num">35</span>  <span class="grey"></span>
+   <span class="grey line-num">36</span>  <span class="grey"></span>
 </code>
                                     
                                 </div>

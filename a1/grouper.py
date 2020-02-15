@@ -237,7 +237,7 @@ class GreedyGrouper(Grouper):
         stu_size = len(stu)
 
         g = Grouping()
-
+        new_group = Group()
         while stu != []:
 
             if (stu_size - len(stu)) % self.group_size == 0:
