@@ -366,7 +366,8 @@ class Group:
         for stu in members:
             ids.append(stu.id)
         if len(set(ids)) != len(ids):
-            # violation of Representation Invariants:No two students in _members have the same id'
+            # violation of Representation Invariants:
+            # No two students in _members have the same id
             return
 
         self._members = members
