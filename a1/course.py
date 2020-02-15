@@ -54,6 +54,9 @@ class Student:
     id: the id of the student
     name: the name of the student
 
+    === Private Attributes ===
+    _ans: the answer of the student
+
     === Representation Invariants ===
     name is not the empty string
     """
