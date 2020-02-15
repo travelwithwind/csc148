@@ -204,6 +204,5 @@ class TestSurvey:
         assert self.sur.score_students([self.student]) == 5.0
 
 if __name__ == '__main__':
-    import pytest
 
-    pytest.main(['test.py'])
+    pytest.main(['tests.py'])
