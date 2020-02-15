@@ -3,215 +3,207 @@ import survey
 import criterion
 import grouper
 import pytest
-from typing import List, Set, FrozenSet
 
 
-def empty_course() -> course.Course:
-    return course.Course('csc148')
+class TestStudent:
+    def __init__(self):
+        self.student1 = Student(1, "Mario")
+        self.question1 = Question(1, "Question1")
+        self.answer1 = Answer("Answer1")
+
+    def test_has_answer(self) -> None:
+        assert not self.student1.has_answer(self.question1)
+
+    def set_answer(self) -> None:
+        self._ans[self.question1] = self.answer1
+        assert not self.student1.has_answer(self.question1)
+
+    def test_get_answer(self) -> None:
+        assert self.student1.get_answer(self.question1) is None
+
+
+class TestCourse:
+    def __init__(self):
+        self.course1 = Course("CSC148")
+        self.student1 = Student(1, "Mario")
+        self.multi1 = MultipleChoiceQuestion \
+            (1, "Multiple Choice Question 1", ["A", "B", "C", "D"])
+        self.survey1 = Survey([self.multi1])
+
+    def test_enroll_students(self) -> None:
+        # successfully enrolled
+        self.course1.enroll_students([self.student1])
+        assert len(self.course1) == 1
+
+    def test_all_answered(self) -> None:
+        # return true if empty
+        assert self.course1.all_answered(self.survey1)
+
+    def test_get_students(self) -> None:
+        # empty at first
+        assert self.c1.get_students() == ()
+
+
+class TestMultipleChoiceQuestion:
+    def __init__(self):
+        self.multi1 = MultipleChoiceQuestion \
+            (1, "Multiple Choice Question 1", ["A", "B", "C", "D"])
+        self.answer1 = Answer("A")
+        self.answer2 = Answer("A")
+
+    def test_validate_answer(self) -> None:
+        # content is Multiple Choice
+        assert self.multi1.validate_answer(self.answer1)
+
+    def test_get_similarity(self) -> None:
+        # content the same, return 1
+        assert get_similarity(self.answer1.content, self.answer2.content) \
+               == 1.0
+
+
+class TestNumericQuestion:
+    def __init__(self):
+        self.numeric1 = NumericQuestion(1, "Numeric1", 0, 5)
+        self.answer1 = Answer(1)
+        self.answer2 = Answer(1)
+
+    def test_validate_answer(self) -> None:
+        # content is Numeric
+        assert self.numeric1.validate_answer(self.answer1)
+
+    def test_get_similarity(self) -> None:
+        # content the same, return 1
+        assert get_similarity(self.answer1.content, self.answer2.content) \
+               == 1.0
+
+
+class TestYesNoQuestionQuestion:
+    def __init__(self):
+        self.yesno1 = YesNoQuestion(1, "YesNo1", [True, False])
+        self.answer1 = Answer(True)
+        self.answer2 = Answer(True)
+
+    def test_validate_answer(self) -> None:
+        # content is Yesorno Question
+        assert self.yesno1.validate_answer(self.answer1)
+
+    def test_get_similarity(self) -> None:
+        # content the same, return 1
+        assert get_similarity(self.answer1.content, self.answer2.content) \
+               == 1.0
+
+
+class TestCheckboxQuestion:
+    def __init__(self):
+        self.checkbox1 = CheckboxQuestion(1, "Checkbox", ["A", "B", "C", "D"])
+        self.answer1 = Answer("A")
+        self.answer2 = Answer("A")
+
+    def test_validate_answer(self) -> None:
+        # content is checkbox Question
+        assert self.checkbox1.validate_answer(self.answer1)
+
+    def test_get_similarity(self) -> None:
+        # content the same, return 1
+        assert get_similarity(self.answer1.content, self.answer2.content) \
+               == 1.0
+
+
+class TestAnswer:
+    def __init__(self):
+        self.multi1 = MultipleChoiceQuestion \
+            (1, "Multiple Choice Question 1", ["A", "B", "C", "D"])
+        self.answer1 = Answer("A")
+        self.answer2 = Answer("A")
+
+    def test_validate_answer(self) -> None:
+        # content is Multiple Choice
+        assert self.multi1.validate_answer(self.answer1)
+
+
+class TestHomogeneousCriterion:
+    def __init__(self):
+        self.choices = "A"
+        self.c = HomogeneousCriterion()
+        self.question1 = MultipleChoiceQuestion(1, "Multi1", "A")
+
+    def test_score_answers(self) -> None:
+        # only one answer in <answers> and it is valid return 1.0
+        assert self.c.score_answers(self.question11, [Answer(self.choices)]) \
+               == 1
+
+
+class TestHeterogeneousCriterion:
+    def __init__(self):
+        self.choices = "A"
+        self.c = HeterogeneousCriterion()
+        self.question1 = MultipleChoiceQuestion(1, "Multi1", "A")
+
+    def test_score_answers(self) -> None:
+        # only one answer in <answers> and it is valid return 1.0
+        assert self.c.score_answers(self.question11, [Answer(self.choices)]) \
+               == 0
+
+
+class LonelyMemberCriterion:
+    def __init__(self):
+        self.choices = "A"
+        self.c = LonelyMemberCriterion()
+        self.question1 = MultipleChoiceQuestion(1, "Multi1", "A")
+
+    def test_score_answers(self) -> None:
+        # only one answer in <answers> and it is valid return 1.0
+        assert self.c.score_answers(self.question11, [Answer(self.choices)]) \
+               == 0
+
+
+def test_slice_list(self) -> None:
+    assert slice_list([1, 2, 3, 4, 5], 2) == [[1, 2], [3, 4], [5]]
+
+
+def windows(self) -> None:
+    assert windows([1, 2, 3], 2) == [[1, 2], [2, 3]]
+
+
+class TestGroup:
+    def __init__(self):
+        self.group = grouper.Group([])
+
+    def test_get_members(self) -> None:
+        # no member can get
+        assert len(self.group.get_members()) == 0
+
+
+class TestGrouping:
+    def __init__(self):
+        self.grouping = grouper.Grouping()
+        self.group = Group([Student(i, "Student" + str(i)) for i in range(2)])
+
+    def test_add_group(self) -> None:
+        assert self.grouping.add_group(self.group)
+
+    def test_get_groups(self) -> None:
 
 
 
-def students() -> List[course.Student]:
-    return [course.Student(3, 'Gertrude'),course.Student(1, 'Zoro'),
-           course.Student(4, 'Yvette'),course.Student(2, 'Aaron')]
+class TestSurvey:
+    def __init__(self):
+        student = course.Student(1, "CSC148")
+        question = survey.YesNoQuestion(0, "YesNo")
+        student.set_answer(question, survey.Answer(True))
+        sur = survey.Survey([question])
+
+    def test_get_questions(self) -> None:
+        assert self.sur.get_questions() == []
+
+    def test_get_criterion(self) -> None:
 
 
-def test___str__(self, students) -> None:
-    student = students[0]
-    assert student.name == student.__str__()
+    def test_score_student(self):
+        self.sur.set_weight(5, self.question)
+        assert self.sur.score_students([self.student]) == 5.0
 
+if __name__ == '__main__':
+    import pytest
 
-def test_enroll_students(empty_course, students) -> None:
-    empty_course.enroll_students(students)
-    for student in students:
-        assert student in empty_course.students
-#
-#    def test_all_answered(self, course_with_students_with_answers,
-#                          survey_) -> None:
-#        assert course_with_students_with_answers.all_answered(survey_)
-
-def test_get_students(course_with_students,empty_course, students) -> None:
-#        students = course_with_students.get_students()
-#        for student in students:
-#            assert student in course_with_students.students
-#        for i in students:
-#            print('students from get function')
-#            print(i.name)
-#        for i in course_with_students:
-#            print('students from course enrollment')
-#
-#            print(i.name)
-    assert course_with_students.get_students()==\
-    [students[1],students[3],students[0],students[2]]
-
-
-acourse=empty_course()
-stu=students()
-test_enroll_students(acourse, stu)
-for student in acourse.students:
-    print(student.id, student.name)
-for student in acourse.get_students():
-    print(student.id, student.name)
-
-#stu1=stu[0]
-#stu1.set_answer(mc, ans)
-#stu1.has_answer(mc)
-#stu1.has_answer(nq)
-#stu1.get_answer(mc)
-
-#-----------question-
-mc= survey.MultipleChoiceQuestion(1, 'what price', [4,2,6])
-ans= survey.Answer(2)
-mc.validate_answer(ans)
-
-ans2 = survey.Answer(4)
-mc.validate_answer(ans2)
-
-mc.get_similarity(ans, ans2)
-
-nq=survey.NumericQuestion(2, 'age?', 10, 20)
-ans3 = survey.Answer(15)
-nq.validate_answer(ans3)
-
-ans4 = survey.Answer(13)
-nq.get_similarity(ans3, ans4)
-ans4.is_valid(nq)
-
-yesno=survey.YesNoQuestion(3, 'good?')
-ans5= survey.Answer(True)
-ans6= survey.Answer(False)
-yesno.validate_answer(ans5)
-yesno.get_similarity(ans5, ans6)
-
-ck= survey.CheckboxQuestion(4, 'food?', ['sushi', 'ham', 'burger'])
-ans7=survey.Answer(['sushi', 'hamburger'])
-ans8=survey.Answer(['sushi', 'ham', 'burger'])
-ans9 =survey.Answer( ['sushi'])
-ck.validate_answer(ans7)
-ck.validate_answer(ans8)
-ck.get_similarity(ans8, ans9)
-
-
-
-#-----------criterion------
-
-
-cr1=criterion.HomogeneousCriterion()
-mc= survey.MultipleChoiceQuestion(1, 'why?', ['a', 'b'])
-cr1.score_answers(mc, [survey.Answer('a'), survey.Answer('b'),survey.Answer('a'), survey.Answer('b')])
-
-cr2=criterion.HeterogeneousCriterion()
-nq=survey.NumericQuestion(2, 'what?', -2, 4)
-cr2.score_answers(nq, [survey.Answer(0), survey.Answer(4), survey.Answer(-1), survey.Answer(1)])
-
-cr3=criterion.LonelyMemberCriterion()
-yesno=survey.YesNoQuestion(3, 'good?')
-cr3.score_answers(nq, [survey.Answer(True), survey.Answer(False), survey.Answer(True),survey.Answer(True)])
-
-ck= survey.CheckboxQuestion(4, 'food?', ['a', 'b', 'c'])
-cr1.score_answers(ck, [survey.Answer(['a', 'b']), survey.Answer(['a', 'b']),survey.Answer(['a']), survey.Answer(['b'])])
-
-s = survey.Survey([mc, yesno, nq, ck])
-
-stu[0].set_answer(mc, survey.Answer('a'))
-stu[1].set_answer(mc, survey.Answer('b'))
-stu[2].set_answer(mc, survey.Answer('a'))
-stu[3].set_answer(mc, survey.Answer('b'))
-
-stu[0].set_answer(yesno, survey.Answer(True))
-stu[1].set_answer(yesno, survey.Answer(False))
-stu[2].set_answer(yesno, survey.Answer(True))
-stu[3].set_answer(yesno, survey.Answer(True))
-
-stu[0].set_answer(nq, survey.Answer(0))
-stu[1].set_answer(nq, survey.Answer(4))
-stu[2].set_answer(nq, survey.Answer(-1))
-stu[3].set_answer(nq, survey.Answer(1))
-
-stu[0].set_answer(ck, survey.Answer(['a', 'b']))
-stu[1].set_answer(ck, survey.Answer(['a', 'b']))
-stu[2].set_answer(ck, survey.Answer(['a']))
-stu[3].set_answer(ck, survey.Answer(['b'])) #ans7 is invalid answer try it to raise error
-
-acourse.all_answered(s)
-#mc.validate_answer(ans)
-#nq.validate_answer(ans4)
-#stu[0].has_answer(nq)
-#stu[1].has_answer(nq)
-#stu[2].has_answer(nq)
-#stu[3].has_answer(nq)
-
-s.set_criterion(cr1, mc)
-s.set_criterion(cr3, yesno)
-s.set_criterion(cr2, nq)
-s.set_criterion(cr1, ck)
-
-s.score_students(stu)
-
-
-#-----group------
-group1 = grouper.Group(stu)
-
-g =grouper.Grouping()
-g.add_group(group1)
-g.get_groups()
-stu2= [course.Student(5, 'Rich'),course.Student(6, 'Zoro'),
-           course.Student(7, 'Sue'),course.Student(8, 'Aaron')]
-
-group2 = grouper.Group(stu2)
-g.add_group(group2)
-
-#print(g)
-
-
-acourse.enroll_students(stu2)
-
-stu2[0].set_answer(mc, ans)
-stu2[1].set_answer(mc, ans)
-stu2[2].set_answer(mc, ans)
-stu2[3].set_answer(mc, ans)
-
-stu2[0].set_answer(yesno, ans5)
-stu2[1].set_answer(yesno, ans5)
-stu2[2].set_answer(yesno, ans6)
-stu2[3].set_answer(yesno, ans6)
-
-stu2[0].set_answer(nq, ans3)
-stu2[1].set_answer(nq, ans4)
-stu2[2].set_answer(nq, ans4)
-stu2[3].set_answer(nq, ans3)
-
-stu2[0].set_answer(ck, ans8)
-stu2[1].set_answer(ck, ans8)
-stu2[2].set_answer(ck, ans9)
-stu2[3].set_answer(ck, ans8)
-
-acourse.all_answered(s)
-
-#groupping = grouper.AlphaGrouper(3)
-#alpha_g = groupping.make_grouping(acourse, s)
-#print(alpha_g)
-#
-#groupping = grouper.RandomGrouper(5)
-#rand_g = groupping.make_grouping(acourse, s)
-#print(rand_g)
-
-
-groupping = grouper.GreedyGrouper(4)
-greed_g = groupping.make_grouping(acourse, s)
-print(greed_g)
-
-#groupping = grouper.WindowGrouper(3)
-#window_g = groupping.make_grouping(acourse, s)
-#print(window_g)
-
-#
-#class TestGreedyGrouper:
-#    def test_make_grouping(self, course_with_students_with_answers,
-#                           greedy_grouping,
-#                           survey_) -> None:
-#        grouper_ = grouper.GreedyGrouper(2)
-#        grouping = grouper_.make_grouping(course_with_students_with_answers,
-#                                          survey_)
-#        compare_groupings(grouping, greedy_grouping)
-        
+    pytest.main(['test.py'])
