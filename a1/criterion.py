@@ -89,7 +89,7 @@ class HomogeneousCriterion(Criterion):
                 raise InvalidAnswerError
 
         if len(answers) == 1:
-            return 1
+            return 1.0
 
         scores = []
 
