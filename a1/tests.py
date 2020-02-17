@@ -4,6 +4,12 @@ import criterion
 import grouper
 import pytest
 
+from a1.course import Student, Course
+from a1.criterion import HomogeneousCriterion, HeterogeneousCriterion
+from a1.grouper import slice_list
+from a1.survey import Question, Answer, MultipleChoiceQuestion, Survey, \
+    NumericQuestion, YesNoQuestion, CheckboxQuestion
+
 
 class TestStudent:
     def __init__(self):
@@ -57,7 +63,7 @@ class TestMultipleChoiceQuestion:
 
     def test_get_similarity(self) -> None:
         # content the same, return 1
-        assert get_similarity(self.answer1.content, self.answer2.content) \
+        assert self.get_similarity(self.answer1.content, self.answer2.content) \
                == 1.0
 
 
@@ -73,7 +79,7 @@ class TestNumericQuestion:
 
     def test_get_similarity(self) -> None:
         # content the same, return 1
-        assert get_similarity(self.answer1.content, self.answer2.content) \
+        assert self.get_similarity(self.answer1.content, self.answer2.content) \
                == 1.0
 
 
@@ -89,7 +95,7 @@ class TestYesNoQuestionQuestion:
 
     def test_get_similarity(self) -> None:
         # content the same, return 1
-        assert get_similarity(self.answer1.content, self.answer2.content) \
+        assert self.get_similarity(self.answer1.content, self.answer2.content) \
                == 1.0
 
 
@@ -105,7 +111,7 @@ class TestCheckboxQuestion:
 
     def test_get_similarity(self) -> None:
         # content the same, return 1
-        assert get_similarity(self.answer1.content, self.answer2.content) \
+        assert self.get_similarity(self.answer1.content, self.answer2.content) \
                == 1.0
 
 
@@ -183,6 +189,7 @@ class TestGrouping:
         assert self.grouping.add_group(self.group)
 
     def test_get_groups(self) -> None:
+        pass
 
 
 
@@ -197,7 +204,7 @@ class TestSurvey:
         assert self.sur.get_questions() == []
 
     def test_get_criterion(self) -> None:
-
+        pass
 
     def test_score_student(self):
         self.sur.set_weight(5, self.question)
