@@ -140,9 +140,9 @@ class MultipleChoiceQuestion(Question):
         """
         # TODO: complete the body of this method
         if answer1.content == answer2.content:
-            return 1
+            return 1.0
         else:
-            return 0
+            return 0.0
 
 
 class NumericQuestion(Question):
@@ -281,9 +281,9 @@ class YesNoQuestion(Question):
         """
         if self.validate_answer(answer1) and self.validate_answer(answer2):
             if answer1.content == answer2.content:
-                return 1
+                return 1.0
             else:
-                return 0
+                return 0.0
 
         return None
 
