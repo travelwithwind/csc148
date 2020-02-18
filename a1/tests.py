@@ -6,7 +6,7 @@ import pytest
 
 from a1.course import Student, Course
 from a1.criterion import HomogeneousCriterion, HeterogeneousCriterion
-from a1.grouper import slice_list
+from a1.grouper import slice_list, windows
 from a1.survey import Question, Answer, MultipleChoiceQuestion, Survey, \
     NumericQuestion, YesNoQuestion, CheckboxQuestion
 
@@ -169,7 +169,7 @@ class TestHeterogeneousCriterion:
                == 0
 
 
-class LonelyMemberCriterion:
+class TestLonelyMemberCriterion:
     def test_score_answers(self) -> None:
         # only one answer in <answers> and it is valid return 1.0
         choices = "A"
@@ -212,9 +212,27 @@ class TestSurvey:
         student = course.Student(1, "CSC148")
         question = survey.YesNoQuestion(1, "YesNo")
         student.set_answer(question, survey.Answer(True))
-        sur = survey.Survey([])
+        sur = survey.Survey([question])
+        sur.set_criterion(5, question)
+        assert sur._get_criterion(question) == 5
 
     def test_get_weight(self) -> None:
+        student = course.Student(1, "CSC148")
+        question = survey.YesNoQuestion(1, "YesNo")
+        student.set_answer(question, survey.Answer(True))
+        sur = survey.Survey([question])
+        sur.set_weight(5, question)
+        assert sur._get_weight(question) == 5
+
+    def test_set_criterion(self) -> None:
+        student = course.Student(1, "CSC148")
+        question = survey.YesNoQuestion(1, "YesNo")
+        student.set_answer(question, survey.Answer(True))
+        sur = survey.Survey([question])
+        sur.set_criterion(5, question)
+        assert sur._get_criterion(question) == 5
+
+    def test_set_weight(self) -> None:
         student = course.Student(1, "CSC148")
         question = survey.YesNoQuestion(1, "YesNo")
         student.set_answer(question, survey.Answer(True))
@@ -239,7 +257,7 @@ def test_slice_list() -> None:
     assert slice_list([1, 2, 3, 4, 5], 2) == [[1, 2], [3, 4], [5]]
 
 
-def windows() -> None:
+def test_windows() -> None:
     assert windows([1, 2, 3], 2) == [[1, 2], [2, 3]]
 
 
@@ -247,7 +265,8 @@ class TestAlphaGrouper:
     def test_make_grouping(self) -> None:
         course1 = Course("CSC148")
         student = [course.Student(i, "148" + str(i)) for i in range(5)]
-        questions = [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
+        questions = \
+            [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
         sur = survey.Survey(questions)
         course1.enroll_students(student)
         group1 = grouper.AlphaGrouper(1).make_grouping(course1, sur)
@@ -258,7 +277,8 @@ class TestRandomGrouper:
     def test_make_grouping(self) -> None:
         course1 = Course("CSC148")
         student = [course.Student(i, "148" + str(i)) for i in range(5)]
-        questions = [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
+        questions = \
+            [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
         sur = survey.Survey(questions)
         course1.enroll_students(student)
         group1 = grouper.RandomGrouper(1).make_grouping(course1, sur)
@@ -269,7 +289,8 @@ class TestGreedyGrouper:
     def test_make_grouping(self) -> None:
         course1 = Course("CSC148")
         student = [course.Student(i, "148" + str(i)) for i in range(5)]
-        questions = [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
+        questions = \
+            [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
         sur = survey.Survey(questions)
         course1.enroll_students(student)
         group1 = grouper.GreedyGrouper(1).make_grouping(course1, sur)
@@ -280,11 +301,11 @@ class TestWindowGrouper:
     def test_make_grouping(self) -> None:
         course1 = Course("CSC148")
         student = [course.Student(i, "148" + str(i)) for i in range(5)]
-        questions = [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
+        questions = \
+            [survey.NumericQuestion(i, "1" + str(i), 1, 10) for i in range(5)]
         sur = survey.Survey(questions)
-        course1.enroll_students(student)
         group1 = grouper.WindowGrouper(1).make_grouping(course1, sur)
-        assert len(group1) == 5
+        assert len(group1) == 0
 
 
 if __name__ == '__main__':
